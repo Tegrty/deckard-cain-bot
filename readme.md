@@ -1,7 +1,8 @@
 # 🤖 Deckard Cain Discord Bot 🤖
 
-<!-- add image from url -->
-![Deckard Cain](https://static.wikia.nocookie.net/median-xl/images/9/96/Deckard_Cain_npc.gif/revision/latest?cb=20171206013202)
+<div style="text-align: center;">
+  <img src="https://static.wikia.nocookie.net/median-xl/images/9/96/Deckard_Cain_npc.gif/revision/latest?cb=20171206013202" alt="Deckard Cain">
+</div>
 
 
 ## Description
