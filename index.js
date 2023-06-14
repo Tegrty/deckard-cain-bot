@@ -1,6 +1,7 @@
 const { Client, GatewayIntentBits } = require('discord.js');
 require('dotenv').config();
 const { startTimer, timerFunction } = require('./timer.js');
+const { selectRandomQuote, quotes } = require('./quotes.js');
 
 const client = new Client({
   intents: [
@@ -29,10 +30,11 @@ client.on('ready', () => {
 });
 
 client.on('interactionCreate', (interaction) => {
+  const selectedQuote = selectRandomQuote(quotes);
   if (!interaction.isChatInputCommand()) return;
 
-  if (interaction.commandName === 'ping') {
-    interaction.reply('pong');
+  if (interaction.commandName === 'gossip') {
+    interaction.reply(selectedQuote);
   }
 });
 

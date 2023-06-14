@@ -38,8 +38,9 @@ function startTimer(responseData) {
     if (hellTideProgressTime > 0) {
       var progressMinutes = Math.floor((hellTideProgressTime % (1000 * 60 * 60)) / (1000 * 60));
       var progressSeconds = Math.floor((hellTideProgressTime % (1000 * 60)) / 1000);
-      console.log("The event will end in:", progressMinutes, "minutes", progressSeconds, "seconds");
-      responseData.content = "The event will end in: " + progressMinutes + " minutes " + progressSeconds + " seconds";
+      console.log("🔥Helltide in progress! The event will end in:", progressMinutes, "minutes", progressSeconds, "seconds");
+      
+      responseData.content = "🔥  Helltide in progress! 🔥 The event will end in: " + progressMinutes + " minutes " + progressSeconds + " seconds";
     } else {
       console.log(remainingHours, "hours", remainingMinutes, "minutes", remainingSeconds, "seconds");
       responseData.content = remainingHours + " hours " + remainingMinutes + " minutes " + remainingSeconds + " seconds";
@@ -53,7 +54,7 @@ function startTimer(responseData) {
     const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
     const localTime = latestIntervalEnd.toLocaleString(undefined, options);
     console.log('Latest Helltide:', localTime);
-    responseData.content += " Latest Helltide: " + localTime;
+    // responseData.content += " Latest Helltide: " + localTime;
 
     let tenMinuteWarning = {
       value: false

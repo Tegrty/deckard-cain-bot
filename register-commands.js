@@ -3,8 +3,8 @@ require('dotenv').config();
 
 const commands = [
     {
-        name: 'ping',
-        description: 'Replies with Pong!'
+        name: 'gossip',
+        description: 'Dishes the latest scoop!'
     },
     {
         name: 'helltide',
