@@ -54,7 +54,17 @@ function startTimer(responseData) {
     const localTime = latestIntervalEnd.toLocaleString(undefined, options);
     console.log('Latest Helltide:', localTime);
     responseData.content += " Latest Helltide: " + localTime;
+
+    let tenMinuteWarning = {
+      value: false
+    };
+  
+    if (remainingHours === 0 && remainingMinutes === 10 && remainingSeconds === 0) {
+      tenMinuteWarning.value = true;
+    }
+    console.log(tenMinuteWarning.value);
   }
+  
   
   
   module.exports = {
