@@ -36,7 +36,7 @@ client.on('interactionCreate', (interaction) => {
   }
 });
 
-// Empty response data variable for /helltide command. This will be updated in timerFunction()
+// Empty response data variable for /helltide command. This will be updated in startTimer()
 const responseData = {};
 
 client.on('interactionCreate', (interaction) => {

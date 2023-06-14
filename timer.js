@@ -36,15 +36,13 @@ function startTimer(responseData) {
     var hellTideProgressTime = remainingTime - 75 * 60 * 1000;
   
     if (hellTideProgressTime > 0) {
-      console.log("The event will end in:", Math.floor((hellTideProgressTime % (1000 * 60 * 60)) / (1000 * 60)), "minutes", Math.floor((hellTideProgressTime % (1000 * 60)) / 1000), "seconds");
-    } else {
-      console.log('');
-    }
-  
-    if (hellTideProgressTime > 0) {
-      console.log("Helltide in progress");
+      var progressMinutes = Math.floor((hellTideProgressTime % (1000 * 60 * 60)) / (1000 * 60));
+      var progressSeconds = Math.floor((hellTideProgressTime % (1000 * 60)) / 1000);
+      console.log("The event will end in:", progressMinutes, "minutes", progressSeconds, "seconds");
+      responseData.content = "The event will end in: " + progressMinutes + " minutes " + progressSeconds + " seconds";
     } else {
       console.log(remainingHours, "hours", remainingMinutes, "minutes", remainingSeconds, "seconds");
+      responseData.content = remainingHours + " hours " + remainingMinutes + " minutes " + remainingSeconds + " seconds";
     }
   
     const startTime = new Date('June 5, 2023 10:00:00 GMT+0000');
@@ -55,12 +53,9 @@ function startTimer(responseData) {
     const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
     const localTime = latestIntervalEnd.toLocaleString(undefined, options);
     console.log('Latest Helltide:', localTime);
-  
-    // Update the /helltide response data variable
-    responseData.content = remainingHours + " hours " + remainingMinutes + " minutes " + remainingSeconds + " seconds" +
-      " Latest Helltide: " + localTime;
-  
+    responseData.content += " Latest Helltide: " + localTime;
   }
+  
   
   module.exports = {
     startTimer,
