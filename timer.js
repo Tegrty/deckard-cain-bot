@@ -1,3 +1,6 @@
+const { EventEmitter } = require('events');
+const tenMinuteWarning = new EventEmitter();
+
 // **NOTE: There is a 75 minute delay between the start of a Helltide after the previous one ends. A Helltide event will last 1 hour**
 
 function startTimer(responseData) {
@@ -43,7 +46,7 @@ function startTimer(responseData) {
       responseData.content = "🔥  Helltide in progress! 🔥 The event will end in: " + progressMinutes + " minutes " + progressSeconds + " seconds";
     } else {
       console.log(remainingHours, "hours", remainingMinutes, "minutes", remainingSeconds, "seconds");
-      responseData.content = remainingHours + " hours " + remainingMinutes + " minutes " + remainingSeconds + " seconds";
+      responseData.content = "Helltide has ended. Next event is in: " + remainingHours + " hours " + remainingMinutes + " minutes " + remainingSeconds + " seconds";
     }
   
     const startTime = new Date('June 5, 2023 10:00:00 GMT+0000');
@@ -56,20 +59,30 @@ function startTimer(responseData) {
     console.log('Latest Helltide:', localTime);
     // responseData.content += " Latest Helltide: " + localTime;
 
-    let tenMinuteWarning = {
+    let tenMinuteWarningValue = {
       value: false
     };
+
+
   
-    if (remainingHours === 0 && remainingMinutes === 10 && remainingSeconds === 0) {
-      tenMinuteWarning.value = true;
+    if (remainingHours === 0 && remainingMinutes >= 10 && remainingMinutes < 11) {
+      if (!tenMinuteWarningValue.value) {
+      tenMinuteWarningValue.value = true;
+      tenMinuteWarning.emit('change', tenMinuteWarningValue); 
+      }
+    } else if (tenMinuteWarningValue.value) {
+      tenMinuteWarningValue.value = false;
     }
-    console.log(tenMinuteWarning.value);
+    console.log(tenMinuteWarningValue.value);
+    
   }
   
   
   
   module.exports = {
     startTimer,
-    timerFunction
+    timerFunction,
+    tenMinuteWarning
+    
   };
   
